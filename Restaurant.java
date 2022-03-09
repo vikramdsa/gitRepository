@@ -10,7 +10,7 @@ public class Restaurant {
     public LocalTime closingTime;
     public LocalTime currentTime;
     private List<Item> menu = new ArrayList<Item>();
-
+    private List<OrderItem> orderItemList = new ArrayList<OrderItem>();
 
     public Restaurant(String name, String location, LocalTime openingTime, LocalTime closingTime) {
         this.name = name;
@@ -69,5 +69,41 @@ public class Restaurant {
         return name;
     }
 
+//<<<<<<<<<<<<<<<<<<<<<<<OrderValue>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    public List<OrderItem> getOrderItemList() {
+        return this.orderItemList;
+    }
+
+    private OrderItem findOrderItemByName(String orderItemName){
+        for(OrderItem orderItem: orderItemList) {
+            if(orderItem.getOrderName().equals(orderItemName))
+                return orderItem;
+        }
+        return null;
+    }
+
+    public void addToOrder(String name, int price) {
+        OrderItem newOrderItem = new OrderItem(name,price);
+        orderItemList.add(newOrderItem);
+    }
+
+    public void removeFromOrder(String orderItemName) throws orderItemNotFoundException {
+        OrderItem orderItemToBeRemoved = findOrderItemByName(orderItemName);
+        if (orderItemToBeRemoved == null)
+            throw new orderItemNotFoundException(orderItemName);
+
+        orderItemList.remove(orderItemToBeRemoved);
+    }
+
+    public int orderValue() {
+        int orderPrice=0;
+
+        for(OrderItem orderItem: orderItemList) {
+            orderPrice+=orderItem.getOrderPrice();
+        }
+        return orderPrice;
+    }
+//<<<<<<<<<<<<<<<<<<<<<<<OrderValue>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 }

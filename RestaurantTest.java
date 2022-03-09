@@ -11,7 +11,7 @@ class RestaurantTest {
 
     @BeforeEach
     public void initialise_restaurant_object(){
-        LocalTime openingTime = LocalTime.parse("08:00:00");
+        LocalTime openingTime = LocalTime.parse("10:30:00");
         LocalTime closingTime = LocalTime.parse("23:00:00");
         restaurant =new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
         restaurant.addToMenu("Sweet corn soup",119);
@@ -58,6 +58,7 @@ class RestaurantTest {
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+
     //<<<<<<<<<<<<<<<<<<<<<<<OrderValue>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     @Test
     public void adding_orderitem_to_orderlist_should_increase_orderlist_size_by_1(){
@@ -81,5 +82,6 @@ class RestaurantTest {
     public void get_order_value_from_orderlist() {
         assertEquals(738,restaurant.orderValue());
     }
-   //<<<<<<<<<<<<<<<<<<<<<<<OrderValue>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    //<<<<<<<<<<<<<<<<<<<<<<<OrderValue>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 }
